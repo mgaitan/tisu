@@ -1,7 +1,9 @@
 from docutils.core import publish_doctree
 
 
-def issue_parser(source):
+def issue_parser(path):
+    with open(path) as fh:
+        source = fh.read()
     lines = source.split('\n')
     dt = publish_doctree(source)
     titles = []
