@@ -1,15 +1,17 @@
-# Tisú
+Tisú
+----
 
 Your project's issue tracker, in a text file
 
-Note: this is a work in progress. Pull request and feedback are welcome
+Note: this is a work in progress. Pull requests and feedback are welcome
 
+Install
++++++++
 
-## Install
+$ [sudo] pip3 install -U tisu
 
-$ [sudo] pip3 install -U https://github.com/mgaitan/tisu/archive/master.zip
-
-## Usage
+Usage
++++++
 
 ```
 (tissue)tin@morochita:~$ tisu --help
