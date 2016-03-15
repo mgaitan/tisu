@@ -13,8 +13,11 @@ setup(
     url='https://github.com/mgaitan/tissue',
     license='BSD',
     keywords="github issues tracking bugs markdown",
-    packages=['tissue']
+    packages=['tissue'],
     install_requires=['recommonmark', 'pygithub', 'docopt'],
+    entry_points={
+        'console_scripts': ['tissue=tissue.cli:main'],
+    },
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
