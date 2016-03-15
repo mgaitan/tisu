@@ -1,5 +1,5 @@
 import os.path
-from tissue.parser import parser
+from tisu.parser import parser
 
 
 def s(file):

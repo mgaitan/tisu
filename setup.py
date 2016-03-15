@@ -4,7 +4,7 @@ from setuptools import setup
 long_description = open('README.md').read()
 
 setup(
-    name='tissue',
+    name='tisu',
     version='0.1',
     description="your project's issue tracker, in a text file",
     long_description=long_description,
@@ -13,10 +13,10 @@ setup(
     url='https://github.com/mgaitan/tissue',
     license='BSD',
     keywords="github issues tracking bugs markdown",
-    packages=['tissue'],
+    packages=['tisu'],
     install_requires=['recommonmark', 'pygithub', 'docopt'],
     entry_points={
-        'console_scripts': ['tissue=tissue.cli:main'],
+        'console_scripts': ['tisu=tisu.cli:main'],
     },
     classifiers=[
         'Development Status :: 4 - Beta',

@@ -1,8 +1,8 @@
-"""Tissue: your issue tracker, in a text file
+"""Tisú: your issue tracker, in a text file
 
 Usage:
-  tissue push <markdown_file> <repo> [--user=<user>] [--pass=<pass>]
-  tissue pull <markdown_file> <repo> [--state=<state>]
+  tisu push <markdown_file> <repo> [--user=<user>] [--pass=<pass>]
+  tisu pull <markdown_file> <repo> [--state=<state>]
 
 Options:
   -h --help         Show this screen.
@@ -13,8 +13,8 @@ Options:
 """
 
 from docopt import docopt
-from tissue.parser import parser
-from tissue.gh import GithubManager
+from tisu.parser import parser
+from tisu.gh import GithubManager
 from getpass import getpass
 
 

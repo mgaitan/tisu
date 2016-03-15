@@ -1,26 +1,28 @@
-# tissue
+# Tisú
 
-your project's issue tracker, in a text file
+Your project's issue tracker, in a text file
 
-## How it (will) work  
-
-You write your issues in a local file (markdown / restructuredtext). Each section is an issue (starting level configurable). 
-At the top or bottom you can add metadata: Online id, status, tags, milestone, etc. 
-
-Tissue should be able to synchronize this issues with your issue tracker. Github as first target. Bitbucket next. Others? 
+Note: this is a work in progress. Pull request and feedback are welcome
 
 
-## What we need. 
+## Install
 
-- models: classes that represent "issues" and it related metadata. 
-- Parser: this is the component that know how to parse the file an create modes instances
-- API manager/s: they know how to fetch issue tracker data and send it back online.   
+$ [sudo] pip3 install -U https://github.com/mgaitan/tisu/archive/master.zip
 
+## Usage
 
+```
+(tissue)tin@morochita:~$ tisu --help
+Tisú: your issue tracker, in a text file
 
+Usage:
+  tisu push <markdown_file> <repo> [--user=<user>] [--pass=<pass>]
+  tisu pull <markdown_file> <repo> [--state=<state>]
 
-
-
-
-
-
+Options:
+  -h --help         Show this screen.
+  --version         Show version.
+  --state=<state>   Filter by issue state [default: open].
+  --user=<user>     Github username to send issues. Repo's username if no given.
+  --pass=<pass>     Github password. Prompt if no given.
+```

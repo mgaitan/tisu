@@ -1,5 +1,3 @@
-
-
 class Issue(object):
 
     def __init__(self, title, body, number=None, *kwargs):

@@ -1,8 +1,8 @@
 import re
 from docutils.core import publish_doctree
 from recommonmark.parser import CommonMarkParser
-from .models import Issue
 from github import Github
+from .models import Issue
 
 
 def parser(path):
