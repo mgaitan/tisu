@@ -45,13 +45,17 @@ def test_clean_metadata():
     text = clean_metadata(open(s('with_metadata.md')).read())
     assert text == '# test1\n\n\nbody\n'
 
+
 def test_clean_metadata_not_a_block():
     text = clean_metadata("""# title
 
 :labels: x,b,z
 some content
-:milestone:sprint1""")
-    assert text == '# title\n\nsome content\n'
+:milestone:sprint1
+
+more content
+""")
+    assert text == '# title\n\nsome content\n\nmore content\n'
 
 
 def test_with_metatada():
