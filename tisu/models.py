@@ -42,6 +42,9 @@ class Issue(object):
     def assignee(self):
         return self.metadata.get('assignee')
 
+    @property
+    def state(self):
+        return self.metadata.get('state')
 
 
 

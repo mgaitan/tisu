@@ -28,7 +28,8 @@ def test_get_metadata():
     meta = get_metadata(open(s('with_metadata.md')).read())
     assert meta == {'assignee': 'mgaitan',
                     'labels': ['x', 'y', 'z'],
-                    'milestone': 'sprint1'}
+                    'milestone': 'sprint1',
+                    'state': 'open'}
 
 
 def test_get_metadata_is_stable():

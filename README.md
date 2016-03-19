@@ -86,7 +86,7 @@ or `milestone`. These metadata lines can be in any position under the title (and
 neccesarily all, in this order nor all together) and if present,
 they are removed from the issue's description sent.
 
-For example:
+For example, create a new issue with some metadata
 
 ```
 # Make a video
@@ -97,4 +97,18 @@ For example:
 
 Make an screencast showing how to use Tisú.
 
+```
+
+If later you want to close this issue, you can add this metadata and push.
+
+```
+# [#13] Make a video
+
+:assignee: mgaitan
+:labels: docs, idea
+:milestone: sprint 1
+
+Make an screencast showing how to use Tisú.
+
+:state: closed
 ```

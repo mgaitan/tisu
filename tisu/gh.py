@@ -12,6 +12,9 @@ class GithubManager(object):
         issues = []
         for issue in self.repo.get_issues(state=state):
             meta = Metadata()
+            if issue.state != 'open':
+                # assume state open
+                meta['state'] = issue.state
             if issue.milestone:
                 meta['milestone'] = issue.milestone.title
             if issue.labels:
@@ -53,21 +56,40 @@ class GithubManager(object):
             print("{} doesn't belong to this repo. This issue won't be assigned.".format(login))
         return self._assignees.get(login)
 
+    def get_state(self, state):
+        if not state:
+            return 'open'
+        if state not in ('open', 'closed'):
+            print("{} isn't a valid state (i.e: open or closed)".format(state))
+            return 'open'
+        return state
+
     def sender(self, issues):
         """
         push a list of issues to github
         """
 
         for issue in issues:
+            state = self.get_state(issue.state)
             if issue.number:
                 try:
                     gh_issue = self.repo.get_issue(issue.number)
+                    original_state = gh_issue.state
+                    if original_state == state:
+                        action = 'Updated'
+                    elif original_state == 'closed':
+                        action = 'Reopened'
+                    else:
+                        action = 'Closed'
+
                     gh_issue.edit(title=issue.title,
                                   body=issue.body,
                                   labels=issue.labels,
                                   milestone=self.get_milestone(issue.milestone),
-                                  assignee=self.get_assignee(issue.assignee))
-                    print('Updated #{}: {}'.format(gh_issue.number, gh_issue.title))
+                                  assignee=self.get_assignee(issue.assignee),
+                                  state=self.get_state(issue.state)
+                                  )
+                    print('{} #{}: {}'.format(action, gh_issue.number, gh_issue.title))
                 except GithubException:
                     print('Not found #{}: {} (ignored)'.format(issue.number, issue.title))
                     continue
