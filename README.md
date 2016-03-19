@@ -7,8 +7,11 @@ Note: this is a work in progress. Pull requests and feedback are welcome.
 
 ## Install
 
-
+```
 $ [sudo] pip3 install -U tisu
+```
+
+Tisú is written in Python 3.4+; Legacy Python (a.k.a. 2.7) may work but isn't considered.
 
 ## Usage
 

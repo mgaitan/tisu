@@ -5,7 +5,7 @@ long_description = open('README.md').read()
 
 setup(
     name='tisu',
-    version='0.1',
+    version='1.0',
     description="your project's issue tracker, in a text file",
     long_description=long_description,
     author=u'Martín Gaitán',
