@@ -23,10 +23,11 @@ issue body
 
 ```
 
-If an issue already exists in your tracker, the number is a sufix in the title.
+If an issue already exists in your tracker, the number is a prefix in the title, wrapped
+by square brackets:
 
 ```
-# issue title [#1]
+# [#1] issue title
 ```
 
 In this case, Tisú will update that issue instead to create a new one.

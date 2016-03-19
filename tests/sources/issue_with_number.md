@@ -1,3 +1,3 @@
-# Fix the parser [#18]
+# [#18] Fix the parser
 
 This would be the content of and issue

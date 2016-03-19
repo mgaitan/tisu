@@ -1,5 +1,4 @@
 import re
-from collections import namedtuple
 from docutils.core import publish_doctree
 from recommonmark.parser import CommonMarkParser
 from tisu.models import Issue, Metadata
@@ -34,9 +33,9 @@ def parser(path):
         text = section.astext()
         title = text.split('\n')[0].strip()
         number = None
-        matched = re.match(r'(.*)\[#(\d+)]$', title)
+        matched = re.match(r'^\[#(\d+)]\s*?(.*)$', title)
         if matched:
-            title, number = matched.groups()
+            number, title = matched.groups()
 
         metadata = get_metadata(text)
 

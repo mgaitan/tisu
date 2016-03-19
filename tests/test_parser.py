@@ -33,12 +33,12 @@ def test_get_metadata():
 
 def test_get_metadata_is_stable():
     meta = get_metadata(open(s('with_metadata.md')).read())
-    assert meta == get_metadata(meta.dump())
+    assert meta == get_metadata(str(meta))
 
 
 def test_no_metadata_return_no_output():
     meta = get_metadata('No\n\nmetadata')
-    assert meta.dump() == ''
+    assert str(meta) == ''
 
 
 def test_clean_metadata():
