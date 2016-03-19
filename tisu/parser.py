@@ -4,14 +4,19 @@ from docutils.core import publish_doctree
 from recommonmark.parser import CommonMarkParser
 from tisu.models import Issue, Metadata
 
+META_REGEX = re.compile(r'^:(state|assignee|labels|milestone):\s*?(.*)\r?\n?',
+                        flags=re.MULTILINE)
+
 
 def get_metadata(text):
-    regex = re.compile(r'^:(state|assignee|labels|milestone):\s*?(.*)',
-                       flags=re.MULTILINE)
-    meta = Metadata((k, v.strip()) for k, v in re.findall(regex, text))
+    meta = Metadata((k, v.strip()) for k, v in re.findall(META_REGEX, text))
     if 'labels' in meta:
         meta['labels'] = [l.strip() for l in meta['labels'].split(',')]
     return meta
+
+
+def clean_metadata(text):
+    return re.sub(META_REGEX, '', text)
 
 
 def parser(path):
@@ -43,7 +48,7 @@ def parser(path):
     return [Issue(title=tokens[s][0],
                   number=tokens[s][1],
                   metadata=tokens[s][2],
-                  body='\n'.join(lines[s:e - 2])) for s, e in zip(k, k[1:])]
+                  body=clean_metadata('\n'.join(lines[s:e - 2]))) for s, e in zip(k, k[1:])]
 
 
 if __name__ == '__main__':

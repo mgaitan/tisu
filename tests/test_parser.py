@@ -1,5 +1,5 @@
 import os.path
-from tisu.parser import parser, get_metadata
+from tisu.parser import parser, get_metadata, clean_metadata
 
 
 def s(file):
@@ -41,12 +41,25 @@ def test_no_metadata_return_no_output():
     assert meta.dump() == ''
 
 
+def test_clean_metadata():
+    text = clean_metadata(open(s('with_metadata.md')).read())
+    assert text == '# test1\n\n\nbody\n'
+
+def test_clean_metadata_not_a_block():
+    text = clean_metadata("""# title
+
+:labels: x,b,z
+some content
+:milestone:sprint1""")
+    assert text == '# title\n\nsome content\n'
+
+
 def test_with_metatada():
     issues = parser(s('with_metadata.md'))
     assert len(issues) == 1
     assert issues[0].title == 'test1'
     assert issues[0].number is None
-    assert issues[0].body == '\nbody\n'
+    assert issues[0].body == '\n\nbody\n'
     assert issues[0].metadata == {'assignee': 'mgaitan',
                                   'labels': ['x', 'y', 'z'],
                                   'milestone': 'sprint1'}

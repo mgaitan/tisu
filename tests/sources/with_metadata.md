@@ -1,7 +1,7 @@
 # test1
 
 :labels: x, y, z
-:assignee:  mgaitan
+:assignee:   mgaitan
 :milestone:sprint1
 
 body
