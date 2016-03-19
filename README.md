@@ -1,17 +1,17 @@
-Tisú
-====
+# Tisú
+
 
 Your project's issue tracker, in a text file
 
 Note: this is a work in progress. Pull requests and feedback are welcome.
 
-Install
--------
+## Install
+
 
 $ [sudo] pip3 install -U tisu
 
-Usage
------
+## Usage
+
 
 Tisú can import and export your issues using a simple markdown file, where each section
 is a different issue.
@@ -23,10 +23,11 @@ issue body
 
 ```
 
-If an issue already exists in your tracker, the number is a sufix in the title.
+If an issue already exists in your tracker, the number is a prefix in the title, wrapped
+by square brackets:
 
 ```
-# issue title [#1]
+# [#1] issue title
 ```
 
 In this case, Tisú will update that issue instead to create a new one.
@@ -49,8 +50,7 @@ Options:
   --pass=<pass>     Github password. Prompt if no given.
 ```
 
-Example
--------
+### Example
 
 Suppose you want to push a couple of issues like in
 [this TODO.md](https://github.com/mgaitan/tisu/blob/caf8cdd34d7dea04e7e36a23a4e08748364f09c5/TODO.md)
@@ -77,4 +77,38 @@ $ tisu pull TODO.md mgaitan/tisu
 As in this case I didn't change anything online, the content is (almost) the same, but note that
 each title has its ID number.
 
+## Working with metadata
 
+Tisú can also synchronize the issue's metadata with ease.
+
+The format is `:<meta_var>: <value/s>`, where `<meta_var>` is one `assignee`, `labels`
+or `milestone`. These metadata lines can be in any position under the title (and not
+neccesarily all, in this order nor all together) and if present,
+they are removed from the issue's description sent.
+
+For example, create a new issue with some metadata
+
+```
+# Make a video
+
+:assignee: mgaitan
+:labels: docs, idea
+:milestone: sprint 1
+
+Make an screencast showing how to use Tisú.
+
+```
+
+If later you want to close this issue, you can add this metadata and push.
+
+```
+# [#13] Make a video
+
+:assignee: mgaitan
+:labels: docs, idea
+:milestone: sprint 1
+
+Make an screencast showing how to use Tisú.
+
+:state: closed
+```

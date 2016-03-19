@@ -22,7 +22,7 @@ def pull(repo, path, state):
     issues = GithubManager(repo).fetcher(state)
     with open(path, 'w') as fh:
         for issue in issues:
-            fh.write(issue.dump())
+            fh.write(str(issue))
 
 
 def push(path, repo, username, password):

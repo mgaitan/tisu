@@ -1,10 +1,9 @@
-# setup travis CI [#12]
+# [#12] setup travis CI
 
+:assignee: mgaitan
+:labels: infrastructure
 
-
-
-# support metadata [#11]
-
+# [#11] support metadata
 
 - labels
 - milestone
