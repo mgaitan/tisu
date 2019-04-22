@@ -1,5 +1,5 @@
 from .models import Issue, Metadata
-from github import Github, GithubException
+from github import Github, GithubException, GithubObject
 
 
 class GithubManager(object):
@@ -33,7 +33,7 @@ class GithubManager(object):
         and return the object
         """
         if not title:
-            return
+            return GithubObject.NotSet
         if not hasattr(self, '_milestones'):
             self._milestones = {m.title: m for m in self.repo.get_milestones()}
 
@@ -48,7 +48,7 @@ class GithubManager(object):
         and return it if was found.
         """
         if not login:
-            return
+            return GithubObject.NotSet
         if not hasattr(self, '_assignees'):
             self._assignees = {c.login: c for c in self.repo.get_assignees()}
         if login not in self._assignees:
