@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup
 
-long_description = open('README.md').read()
+long_description = open('README.md').read() + '\n' + open('HISTORY.md').read()
 
 setup(
     name='tisu',

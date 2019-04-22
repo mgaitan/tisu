@@ -1,20 +1,17 @@
 # Tisú
 
 
-Your project's issue tracker, in a text file
+Tisú [*tiˈsu*, **tissue** in spanish] allows to manage your (github) project's issue tracker, using a single text file
 
 Note: this is a work in progress. Pull requests and feedback are welcome.
 
 ## Install
 
 ```
-$ [sudo] pip3 install -U tisu
+$ pip3 install --user -U tisu
 ```
 
-Tisú is written in Python 3.4+; Legacy Python (a.k.a. 2.7) may work but isn't considered.
-
 ## Usage
-
 
 Tisú can import and export your issues using a simple markdown file, where each section
 is a different issue.
