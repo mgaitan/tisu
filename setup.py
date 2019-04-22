@@ -5,7 +5,7 @@ long_description = open('README.md').read() + '\n' + open('HISTORY.md').read()
 
 setup(
     name='tisu',
-    version='0.3',
+    version='1.1',
     description="your project's issue tracker, in a text file",
     long_description=long_description,
     long_description_content_type='text/markdown',

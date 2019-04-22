@@ -2,15 +2,16 @@ Changelog
 =========
 
 
-0.3 (2019-04-22)
+1.1 (2019-04-22)
 ----------------
 
 - Bugfix: Assignee not set.
 - Inferred repo.
 
 
-0.2 (2016-03-19)
-----------------
+0.2 (aka 1.0 )(2016-03-19)
+--------------------------
+
 - Bump 0.2.
 - State support throught metadata.
 - Sync metadata with github.
