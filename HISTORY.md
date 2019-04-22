@@ -4,6 +4,7 @@ Changelog
 
 0.3 (2019-04-22)
 ----------------
+
 - Bugfix: Assignee not set.
 - Inferred repo.
 

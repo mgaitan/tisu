@@ -5,9 +5,10 @@ long_description = open('README.md').read() + '\n' + open('HISTORY.md').read()
 
 setup(
     name='tisu',
-    version='1.0',
+    version='0.3',
     description="your project's issue tracker, in a text file",
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author=u'Martín Gaitán',
     author_email='gaitan@gmail.com',
     url='https://github.com/mgaitan/tissue',
