@@ -35,20 +35,25 @@ In this case, Tisú will update that issue instead to create a new one.
 This is the current command line help::
 
 ```
-(tissue)tin@morochita:~$ tisu --help
 Tisú: your issue tracker, in a text file
 
 Usage:
-  tisu push <markdown_file> <repo> [--user=<user>] [--pass=<pass>]
-  tisu pull <markdown_file> <repo> [--state=<state>]
+  tisu push <markdown_file> [--repo=<repo>] [(--username=<username> [--pass=<pass>]|--token=<token>)]
+  tisu pull <markdown_file> [--repo=<repo>] [--state=<state>] [(--username=<username> [--pass=<pass>]|--token=<token>)]
 
 Options:
-  -h --help         Show this screen.
-  --version         Show version.
-  --state=<state>   Filter by issue state [default: open].
-  --user=<user>     Github username to send issues. Repo's username if no given.
-  --pass=<pass>     Github password. Prompt if no given.
+  -h --help                 Show this screen.
+  --version                 Show version.
+  --repo=<repo>             Github repo (as: user/name). [default: inferred from git remote]
+  --state=<state>           Filter by issue state [default: open].
+  --username=<username>     Github username to send issues. Repo's username if no given.
+  --pass=<pass>             Github password. Prompt if user is given and it is not.
+  --token=<token>           Personal app token. Get one at https://github.com/settings/tokens
 ```
+
+
+To access private repositories you need a [personal access token](https://github.com/settings/tokens).
+
 
 ### Example
 

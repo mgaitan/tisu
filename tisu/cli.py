@@ -1,16 +1,18 @@
-"""Tisú: your issue tracker, in a text file
+"""
+Tisú: your issue tracker, in a text file
 
 Usage:
-  tisu push <markdown_file> [--repo=<repo>] [--user=<user>] [--pass=<pass>]
-  tisu pull <markdown_file> [--repo=<repo>] [--state=<state>]
+  tisu push <markdown_file> [--repo=<repo>] [(--username=<username> [--pass=<pass>]|--token=<token>)]
+  tisu pull <markdown_file> [--repo=<repo>] [--state=<state>] [(--username=<username> [--pass=<pass>]|--token=<token>)]
 
 Options:
-  -h --help         Show this screen.
-  --version         Show version.
-  --repo=<repo>     Github repo (as: user/name). [default: inferred from git remote]
-  --state=<state>   Filter by issue state [default: open].
-  --user=<user>     Github username to send issues. Repo's username if no given.
-  --pass=<pass>     Github password. Prompt if no given.
+  -h --help                 Show this screen.
+  --version                 Show version.
+  --repo=<repo>             Github repo (as: user/name). [default: inferred from git remote]
+  --state=<state>           Filter by issue state [default: open].
+  --username=<username>     Github username to send issues. Repo's username if no given.
+  --pass=<pass>             Github password. Prompt if user is given and it is not.
+  --token=<token>           Personal app token. Get one at https://github.com/settings/tokens
 """
 from getpass import getpass
 import re
@@ -20,16 +22,16 @@ from .parser import parser
 from .gh import GithubManager
 
 
-def pull(repo, path, state):
-    issues = GithubManager(repo).fetcher(state)
+def pull(repo, path, state, username_or_token=None, password=None):
+    issues = GithubManager(repo, username_or_token, password).fetcher(state)
     with open(path, 'w') as fh:
         for issue in issues:
             fh.write(str(issue))
 
 
-def push(path, repo, username, password):
+def push(path, repo, username_or_token, password):
     issues = parser(path)
-    issues = GithubManager(repo, username, password).sender(issues)
+    issues = GithubManager(repo, username_or_token, password).sender(issues)
 
 
 def github_from_git():
@@ -40,13 +42,15 @@ def github_from_git():
 def main():
     args = docopt(__doc__, version='tissue 0.1')
     repo = args['--repo'] if args['--repo'] != 'inferred from git remote' else github_from_git()
-    if args['pull']:
-        pull(repo, args['<markdown_file>'], args['--state'])
+    token = args.get('--token')
+    import ipdb; ipdb.set_trace()
+    username = args.get('--username', repo.split('/')[0])
+    password = args.get('--pass', getpass('Github password: ') if not token else None)
 
+    if args['pull']:
+        pull(repo, args['<markdown_file>'], args['--state'], username_or_token=token or username, password=password)
     elif args['push']:
-        password = args['--pass'] or getpass('Github password: ')
-        username = args.get('--user', repo.split('/')[0])
-        push(args['<markdown_file>'], repo, username, password)
+        push(args['<markdown_file>'], repo, token or username, password)
 
 
 if __name__ == '__main__':
