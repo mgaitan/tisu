@@ -1,5 +1,6 @@
 import os.path
-from tisu.parser import parser, get_metadata, clean_metadata
+
+from tisu.parser import clean_metadata, get_metadata, parser
 
 
 def s(file):
@@ -67,4 +68,9 @@ def test_with_metatada():
     assert issues[0].title == "test1"
     assert issues[0].number is None
     assert issues[0].body == "\n\nbody\n"
-    assert issues[0].metadata == {"assignee": "mgaitan", "labels": ["x", "y", "z"], "milestone": "sprint1"}
+    assert issues[0].metadata == {
+        "assignee": "mgaitan",
+        "labels": ["x", "y", "z"],
+        "milestone": "sprint1",
+        "state": "open",
+    }
