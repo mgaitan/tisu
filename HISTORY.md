@@ -7,7 +7,7 @@ Changelog
 
 - Support GITHUB_TOKEN environment variable to as a `--token` default
 - Migrate package to pyproject + flit
-
+- Enable CI via Github Actions
 
 
 1.1 (2019-04-22)
