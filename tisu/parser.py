@@ -1,7 +1,9 @@
 import re
+
 from docutils.core import publish_doctree
 from recommonmark.parser import CommonMarkParser
-from tisu.models import Issue, Metadata
+
+from .models import Issue, Metadata
 
 META_REGEX = re.compile(r'^:(state|assignee|labels|milestone):\s*?(.*)\r?\n?',
                         flags=re.MULTILINE)

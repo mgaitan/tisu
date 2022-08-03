@@ -32,7 +32,7 @@ by square brackets:
 
 In this case, Tisú will update that issue instead to create a new one.
 
-This is the current command line help::
+This is the current command line help:
 
 ```
 Tisú: your issue tracker, in a text file
@@ -48,7 +48,8 @@ Options:
   --state=<state>           Filter by issue state [default: open].
   --username=<username>     Github username to send issues. Repo's username if no given.
   --pass=<pass>             Github password. Prompt if user is given and it is not.
-  --token=<token>           Personal app token. Get one at https://github.com/settings/tokens
+  --token=<token>           Personal app token. Default to GITHUB_TOKEN environment variable.
+                            Get one at https://github.com/settings/tokens
 ```
 
 
@@ -75,7 +76,7 @@ Result in:
 Then, I can pull and overwrite the file.
 
 ```
-$ tisu pull TODO.md mgaitan/tisu
+$ tisu pull TODO.md
 ```
 
 [This is the result](https://github.com/mgaitan/tisu/blob/07c478a15f0dd12b5f5ba1a7636f9703e9f201fc/TODO.md).
@@ -104,7 +105,7 @@ Make an screencast showing how to use Tisú.
 
 ```
 
-If later you want to close this issue, you can add this metadata and push.
+If later you want to close this issue, you can add mark it with `:state: closed` and push.
 
 ```
 # [#13] Make a video

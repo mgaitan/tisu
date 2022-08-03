@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+1.2 (2022-08-03)
+----------------
+
+- Support GITHUB_TOKEN environment variable to as a `--token` default
+- Migrate package to pyproject + flit
+
+
+
 1.1 (2019-04-22)
 ----------------
 

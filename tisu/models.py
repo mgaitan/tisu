@@ -23,9 +23,10 @@ class Issue(object):
         return "<{0.__class__.__name__}: {0.title}>".format(self)
 
     def __str__(self):
+
         s = '\n\n'.join((v.strip() for v in (self.title,
                                              str(self.metadata),
-                                             self.body) if v.strip()))
+                                             self.body) if v and v.strip()))
         if self.number:
             return "# [#{}] {}\n\n".format(self.number, s)
         return "# {}\n\n".format(s)
@@ -45,6 +46,3 @@ class Issue(object):
     @property
     def state(self):
         return self.metadata.get('state')
-
-
-

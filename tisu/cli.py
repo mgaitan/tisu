@@ -12,14 +12,20 @@ Options:
   --state=<state>           Filter by issue state [default: open].
   --username=<username>     Github username to send issues. Repo's username if no given.
   --pass=<pass>             Github password. Prompt if user is given and it is not.
-  --token=<token>           Personal app token. Get one at https://github.com/settings/tokens
+  --token=<token>           Personal app token. Default to GITHUB_TOKEN environment variable.
+                            Get one at https://github.com/settings/tokens
 """
-from getpass import getpass
+import os
 import re
+from getpass import getpass
 from subprocess import check_output
+
 from docopt import docopt
-from .parser import parser
+
 from .gh import GithubManager
+from .parser import parser
+
+__version__ = "1.2"
 
 
 def pull(repo, path, state, username_or_token=None, password=None):
@@ -40,10 +46,10 @@ def github_from_git():
 
 
 def main():
-    args = docopt(__doc__, version='tissue 0.1')
+    args = docopt(__doc__, version=__version__)
     repo = args['--repo'] if args['--repo'] != 'inferred from git remote' else github_from_git()
-    token = args.get('--token')
-    import ipdb; ipdb.set_trace()
+    token = args.get('--token') or os.environ.get("GITHUB_TOKEN")
+    
     username = args.get('--username', repo.split('/')[0])
     password = args.get('--pass', getpass('Github password: ') if not token else None)
 
