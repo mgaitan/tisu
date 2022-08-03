@@ -1,0 +1,46 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "tisu"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "BSD 3-Clause License"}
+classifiers = [
+    'Development Status :: 4 - Beta',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: BSD License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python'
+]
+authors = [
+    {name = "Martín Gaitán", email = "gaitan@gmail.com"}
+]
+dependencies = [
+    "pygithub >= 1.55",
+    "docopt-ng >= 0.8.1",
+    "recommonmark"
+]
+keywords=["github", "issues", "tracking", "bugs", "markdown"]
+dynamic = ["version", "description"]
+
+
+[project.urls]
+Home = "https://github.com/mgaitan/tisu"
+
+[project.scripts]
+tisu= "tisu.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest", "black", "flit"]
+
+[tool.ipdb]
+context=5
+
+
+[tool.black]
+line-length = 120
+target-version = ["py37"]
+color = true
