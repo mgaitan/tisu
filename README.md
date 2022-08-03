@@ -1,5 +1,8 @@
 # Tisú
 
+![](https://github.com/mgaitan/tisu/actions/workflows/pytest.yml/badge.svg)
+![](https://github.com/mgaitan/tisu/actions/workflows/black.yml/badge.svg)
+
 
 Tisú [*tiˈsu*, **tissue** in spanish] allows to manage your (github) project's issue tracker, using a single text file
 
