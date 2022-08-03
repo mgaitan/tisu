@@ -25,7 +25,7 @@ from docopt import docopt
 from .gh import GithubManager
 from .parser import parser
 
-__version__ = "1.2"
+__version__ = "2.1"
 
 
 def pull(repo, path, state, username_or_token=None, password=None):

@@ -1,13 +1,18 @@
 Changelog
 =========
 
-
-1.2 (2022-08-03)
+2.1 (2022-08-03)
 ----------------
 
 - Support GITHUB_TOKEN environment variable to as a `--token` default
 - Migrate package to pyproject + flit
 - Enable CI via Github Actions
+
+
+2.0 (2021-05-31)
+----------------
+
+Adds support for personal app tokens. This allow to access private repos.
 
 
 1.1 (2019-04-22)
