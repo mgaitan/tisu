@@ -3,7 +3,6 @@ from github import Github, GithubException, GithubObject
 
 
 class GithubManager(object):
-
     def __init__(self, repo, login_or_token=None, password=None):
         self.g = Github(login_or_token, password)
         self.repo = self.g.get_repo(repo)
@@ -12,19 +11,16 @@ class GithubManager(object):
         issues = []
         for issue in self.repo.get_issues(state=state):
             meta = Metadata()
-            if issue.state != 'open':
+            if issue.state != "open":
                 # assume state open
-                meta['state'] = issue.state
+                meta["state"] = issue.state
             if issue.milestone:
-                meta['milestone'] = issue.milestone.title
+                meta["milestone"] = issue.milestone.title
             if issue.labels:
-                meta['labels'] = [l.name for l in issue.labels]
+                meta["labels"] = [l.name for l in issue.labels]
             if issue.assignee:
-                meta['assignee'] = issue.assignee.login
-            issues.append(Issue(title=issue.title,
-                                body=issue.body,
-                                number=issue.number,
-                                metadata=meta))
+                meta["assignee"] = issue.assignee.login
+            issues.append(Issue(title=issue.title, body=issue.body, number=issue.number, metadata=meta))
         return issues
 
     def get_milestone(self, title):
@@ -34,7 +30,7 @@ class GithubManager(object):
         """
         if not title:
             return GithubObject.NotSet
-        if not hasattr(self, '_milestones'):
+        if not hasattr(self, "_milestones"):
             self._milestones = {m.title: m for m in self.repo.get_milestones()}
 
         milestone = self._milestones.get(title)
@@ -49,7 +45,7 @@ class GithubManager(object):
         """
         if not login:
             return GithubObject.NotSet
-        if not hasattr(self, '_assignees'):
+        if not hasattr(self, "_assignees"):
             self._assignees = {c.login: c for c in self.repo.get_assignees()}
         if login not in self._assignees:
             # warning
@@ -58,10 +54,10 @@ class GithubManager(object):
 
     def get_state(self, state):
         if not state:
-            return 'open'
-        if state not in ('open', 'closed'):
+            return "open"
+        if state not in ("open", "closed"):
             print("{} isn't a valid state (i.e: open or closed)".format(state))
-            return 'open'
+            return "open"
         return state
 
     def sender(self, issues):
@@ -76,32 +72,30 @@ class GithubManager(object):
                     gh_issue = self.repo.get_issue(issue.number)
                     original_state = gh_issue.state
                     if original_state == state:
-                        action = 'Updated'
-                    elif original_state == 'closed':
-                        action = 'Reopened'
+                        action = "Updated"
+                    elif original_state == "closed":
+                        action = "Reopened"
                     else:
-                        action = 'Closed'
+                        action = "Closed"
 
-                    gh_issue.edit(title=issue.title,
-                                  body=issue.body,
-                                  labels=issue.labels,
-                                  milestone=self.get_milestone(issue.milestone),
-                                  assignee=self.get_assignee(issue.assignee),
-                                  state=self.get_state(issue.state)
-                                  )
-                    print('{} #{}: {}'.format(action, gh_issue.number, gh_issue.title))
+                    gh_issue.edit(
+                        title=issue.title,
+                        body=issue.body,
+                        labels=issue.labels,
+                        milestone=self.get_milestone(issue.milestone),
+                        assignee=self.get_assignee(issue.assignee),
+                        state=self.get_state(issue.state),
+                    )
+                    print("{} #{}: {}".format(action, gh_issue.number, gh_issue.title))
                 except GithubException:
-                    print('Not found #{}: {} (ignored)'.format(issue.number, issue.title))
+                    print("Not found #{}: {} (ignored)".format(issue.number, issue.title))
                     continue
             else:
-                gh_issue = self.repo.create_issue(title=issue.title,
-                                                  body=issue.body,
-                                                  labels=issue.labels,
-                                                  milestone=self.get_milestone(issue.milestone),
-                                                  assignee=self.get_assignee(issue.assignee))
-                print('Created #{}: {}'.format(gh_issue.number, gh_issue.title))
-
-
-
-
-
+                gh_issue = self.repo.create_issue(
+                    title=issue.title,
+                    body=issue.body,
+                    labels=issue.labels,
+                    milestone=self.get_milestone(issue.milestone),
+                    assignee=self.get_assignee(issue.assignee),
+                )
+                print("Created #{}: {}".format(gh_issue.number, gh_issue.title))
