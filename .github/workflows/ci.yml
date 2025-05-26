@@ -6,7 +6,7 @@ on:
 env:
   FORCE_COLOR: 1
 jobs:
-  qa:
+  ruff:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
@@ -20,7 +20,7 @@ jobs:
       - name: Ruff format
         run: uv run ruff format --check
 
-  tests:
+  pytest:
     runs-on: ubuntu-latest
     strategy:
       matrix:

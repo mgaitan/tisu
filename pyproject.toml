@@ -62,7 +62,8 @@ select = [
 [dependency-groups]
 dev = [
     "ipdb>=0.13.13",
- "ipython>=8.12.3",
- "pytest>=8.3.5",
+    "ipython>=8.12.3",
+    "pytest>=8.3.5",
+    "ruff>=0.11.11",
 ]
 jira = []
