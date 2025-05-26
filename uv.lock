@@ -1854,6 +1854,7 @@ source = { editable = "." }
 dependencies = [
     { name = "docopt-ng" },
     { name = "pygithub" },
+    { name = "pyyaml" },
     { name = "recommonmark" },
 ]
 
@@ -1888,6 +1889,7 @@ requires-dist = [
     { name = "jira", marker = "extra == 'jira'", specifier = ">=3.8.0" },
     { name = "pygithub", specifier = ">=1.55" },
     { name = "pytest", marker = "extra == 'dev'" },
+    { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "pyyaml", marker = "extra == 'jira'", specifier = ">=6.0.2" },
     { name = "recommonmark" },
 ]

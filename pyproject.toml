@@ -16,7 +16,12 @@ classifiers = [
     'Programming Language :: Python',
 ]
 authors = [{ name = "Martín Gaitán", email = "gaitan@gmail.com" }]
-dependencies = ["pygithub >= 1.55", "docopt-ng >= 0.8.1", "recommonmark"]
+dependencies = [
+    "pygithub >= 1.55",
+ "docopt-ng >= 0.8.1",
+ "recommonmark",
+ "pyyaml>=6.0.2",
+]
 keywords = ["github", "issues", "tracking", "bugs", "markdown"]
 dynamic = ["version", "description"]
 

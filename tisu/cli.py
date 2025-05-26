@@ -76,6 +76,7 @@ def main():
         file_path = Path(path)
         file_path.write_text("".join(str(issue) for issue in issues))
     elif args["push"]:
+        import ipdb; ipdb.set_trace()
         issues = parser(path)
         manager.sender(issues)
 
