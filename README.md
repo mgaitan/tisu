@@ -135,7 +135,7 @@ Make an screencast showing how to use Tisú.
 
 # Extra configuration for JIRA project
 
-Since the version 0.3, `tisu` supports JIRA projects..
+Since the version 3, `tisu` supports JIRA projects..
 Most of the configuration could be set through environment variables.
 
 ```
