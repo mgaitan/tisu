@@ -31,9 +31,9 @@ from subprocess import check_output
 
 from docopt import docopt
 
+from . import __version__
 from .managers.github import GithubManager
 from .parser import parser
-from . import __version__
 
 
 def github_from_git():
