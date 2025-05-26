@@ -2,15 +2,14 @@
 Tisú: your issue tracker, in a text file
 
 Usage:
-  tisu push <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] ...
-  tisu pull <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] ...
+  tisu push <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] [--server=<server>] [--username=<username>] [--pass=<pass>] [--token=<token>]
+  tisu pull <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] [--server=<server>] [--username=<username>] [--pass=<pass>] [--token=<token>]
   tisu (-h | --help)
   tisu --version
 
 Options:
   --tracker=<tracker>      issue backend: [default: github] or "jira"
   --repo=<repo>            Github repo (as: user/name). [default: inferred from git remote]
-
   --project=<project>      JIRA project key (e.g. PROJ) - only if --tracker=jira
   --server=<server>        URL of the server
   --version                Show version.
