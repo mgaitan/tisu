@@ -1,8 +1,12 @@
-from .models import Issue, Metadata
 from github import Github, GithubException, GithubObject
 
+from ..models import Issue, Metadata
+from . import TrackerManager
 
-class GithubManager(object):
+
+
+
+class GithubManager(TrackerManager):
     def __init__(self, repo, login_or_token=None, password=None):
         self.g = Github(login_or_token, password)
         self.repo = self.g.get_repo(repo)

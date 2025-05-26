@@ -5,7 +5,7 @@ from recommonmark.parser import CommonMarkParser
 
 from .models import Issue, Metadata
 
-META_REGEX = re.compile(r"^:(state|assignee|labels|milestone):\s*?(.*)\r?\n?", flags=re.MULTILINE)
+META_REGEX = re.compile(r"^:(state|assignee|labels|milestone|parent|project|issuetype):\s*?(.*)\r?\n?", flags=re.MULTILINE)
 
 
 def get_metadata(text):
