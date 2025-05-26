@@ -11,10 +11,9 @@ def test_multiples_issues():
     issues = parser(s("issues.md"))
     assert len(issues) == 3
     assert issues[0].title == "Fix the parser"
-    assert (
-        issues[0].body
-        == ("\nThis would be the content of and issue\n"
-            "\n## subseccion 1.1\n\nthis is a subsection, part of the issue body\n")
+    assert issues[0].body == (
+        "\nThis would be the content of and issue\n"
+        "\n## subseccion 1.1\n\nthis is a subsection, part of the issue body\n"
     )
     assert issues[1].title == "Improve tests"
     assert issues[1].body == "\nAnother issue"
