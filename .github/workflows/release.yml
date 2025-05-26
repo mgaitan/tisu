@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: read
-  
+
 jobs:
   pypi-publish:
     name: upload release to PyPI
@@ -15,8 +15,8 @@ jobs:
       id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - uses: astral-sh/setup-uv@v5
+        uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
       - run: uv build
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
