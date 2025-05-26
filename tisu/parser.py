@@ -23,7 +23,10 @@ def clean_metadata(text):
 
 
 def parser(path: Path | str) -> list[Issue]:
-    source = path if isinstance(path, str) else path.read_text()
+    if isinstance(path, str):
+        path = Path(path)
+
+    source = path.read_text()
     lines = source.split("\n")
     dt = publish_doctree(source, parser=CommonMarkParser())
 

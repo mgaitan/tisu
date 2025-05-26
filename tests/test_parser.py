@@ -4,7 +4,7 @@ from tisu.parser import clean_metadata, get_metadata, parser
 
 
 def s(file):
-    return (Path(__file__).parent / "sources" / file).read_text()
+    return Path(__file__).parent / "sources" / file
 
 
 def test_multiples_issues():
@@ -29,12 +29,12 @@ def test_with_number():
 
 
 def test_get_metadata():
-    meta = get_metadata(s("with_metadata.md"))
+    meta = get_metadata(s("with_metadata.md").read_text())
     assert meta == {"assignee": "mgaitan", "labels": ["x", "y", "z"], "milestone": "sprint1", "state": "open"}
 
 
 def test_get_metadata_is_stable():
-    meta = get_metadata(s("with_metadata.md"))
+    meta = get_metadata(s("with_metadata.md").read_text())
     assert meta == get_metadata(str(meta))
 
 
@@ -44,7 +44,7 @@ def test_no_metadata_return_no_output():
 
 
 def test_clean_metadata():
-    text = clean_metadata(s("with_metadata.md"))
+    text = clean_metadata(s("with_metadata.md").read_text())
     assert text == "# test1\n\n\nbody\n"
 
 
