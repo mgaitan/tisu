@@ -37,5 +37,6 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
       - name: Pytest
         run: uv run pytest
