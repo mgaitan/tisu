@@ -4,7 +4,7 @@ from tisu.parser import clean_metadata, get_metadata, parser
 
 
 def s(file):
-    return (Path(__file__).parent / "sources" / file)
+    return Path(__file__).parent / "sources" / file
 
 
 def test_multiples_issues():
