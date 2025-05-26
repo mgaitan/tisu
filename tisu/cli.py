@@ -33,7 +33,7 @@ from docopt import docopt
 
 from .managers.github import GithubManager
 from .parser import parser
-from .version import __version__
+from . import __version__
 
 
 def github_from_git():
@@ -65,7 +65,7 @@ def main():
         except FileNotFoundError:
             default_from_jira_cli = {}
         token = args.get("--token") or os.environ.get("JIRA_API_TOKEN")
-        username = args.get("--username") or os.environ.get("JIRA_API_USERNAME") or default_from_jira_cli.get("login")
+        username = args.get("--username") or os.environ.get("JIRA_API_LOGIN") or default_from_jira_cli.get("login")
         server = args["--server"] or os.environ.get("JIRA_API_SERVER") or default_from_jira_cli["server"]
         project = args["--project"] or os.environ.get("JIRA_API_PROJECT") or default_from_jira_cli["project"]["key"]
         manager = JiraManager(project, server, username, token)

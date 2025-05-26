@@ -29,6 +29,10 @@ tisu = "tisu.cli:main"
 
 [project.optional-dependencies]
 dev = ["pytest", "black", "flit"]
+jira = [
+    "jira>=3.8.0",
+    "pyyaml>=6.0.2",
+]
 
 [tool.ipdb]
 context = 5
@@ -61,4 +65,4 @@ dev = [
  "ipython>=8.12.3",
  "pytest>=8.3.5",
 ]
-jira = ["jira>=3.8.0", "pyyaml>=6.0.2"]
+jira = []

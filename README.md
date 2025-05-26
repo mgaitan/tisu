@@ -7,8 +7,22 @@ Tisú [*tiˈsu*, **tissue** in spanish] allows to manage your project's issue tr
 
 ## Install
 
+You can use uvx directly
+
+```
+$ uvx tisu --help
+```
+
+To install it permanently,
+
 ```
 $ uv tool install tisu
+```
+
+If you want to use it to manage jira issues,
+
+```
+$ uv tool install tisu[jira]
 ```
 
 ## Usage
@@ -118,3 +132,18 @@ Make an screencast showing how to use Tisú.
 
 :state: closed
 ```
+
+# Extra configuration for JIRA project
+
+Since the version 0.3, `tisu` supports JIRA projects..
+Most of the configuration could be set through environment variables.
+
+```
+export JIRA_API_LOGIN=your_login_email    # equivalent to --username
+export JIRA_API_TOKEN=your_token          # equivalent to --token
+export JIRA_API_SERVER=https://your.jira.server    # equivalent to --server
+export JIRA_API_PROJECT=your_project_prefix    # equivalent to --project
+```
+
+If you also use the wonderful [jira-cli](https://github.com/ankitpokhrel/jira-cli), then this values
+will try to be parsed automatically from its config file at `~/.config/.jira/.config.yml`

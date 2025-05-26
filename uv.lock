@@ -1839,6 +1839,10 @@ dev = [
     { name = "flit" },
     { name = "pytest" },
 ]
+jira = [
+    { name = "jira" },
+    { name = "pyyaml" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -1849,21 +1853,19 @@ dev = [
     { name = "ipython", version = "9.2.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "pytest" },
 ]
-jira = [
-    { name = "jira" },
-    { name = "pyyaml" },
-]
 
 [package.metadata]
 requires-dist = [
     { name = "black", marker = "extra == 'dev'" },
     { name = "docopt-ng", specifier = ">=0.8.1" },
     { name = "flit", marker = "extra == 'dev'" },
+    { name = "jira", marker = "extra == 'jira'", specifier = ">=3.8.0" },
     { name = "pygithub", specifier = ">=1.55" },
     { name = "pytest", marker = "extra == 'dev'" },
+    { name = "pyyaml", marker = "extra == 'jira'", specifier = ">=6.0.2" },
     { name = "recommonmark" },
 ]
-provides-extras = ["dev"]
+provides-extras = ["dev", "jira"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -1871,10 +1873,7 @@ dev = [
     { name = "ipython", specifier = ">=8.12.3" },
     { name = "pytest", specifier = ">=8.3.5" },
 ]
-jira = [
-    { name = "jira", specifier = ">=3.8.0" },
-    { name = "pyyaml", specifier = ">=6.0.2" },
-]
+jira = []
 
 [[package]]
 name = "tomli"
