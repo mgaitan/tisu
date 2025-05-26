@@ -1847,6 +1847,7 @@ dev = [
     { name = "ipython", version = "8.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
     { name = "ipython", version = "8.36.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.10.*'" },
     { name = "ipython", version = "9.2.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "pytest" },
 ]
 jira = [
     { name = "jira" },
@@ -1868,6 +1869,7 @@ provides-extras = ["dev"]
 dev = [
     { name = "ipdb", specifier = ">=0.13.13" },
     { name = "ipython", specifier = ">=8.12.3" },
+    { name = "pytest", specifier = ">=8.3.5" },
 ]
 jira = [
     { name = "jira", specifier = ">=3.8.0" },

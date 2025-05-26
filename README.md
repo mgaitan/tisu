@@ -1,17 +1,14 @@
 # Tisú
 
-![](https://github.com/mgaitan/tisu/actions/workflows/pytest.yml/badge.svg)
-![](https://github.com/mgaitan/tisu/actions/workflows/black.yml/badge.svg)
+![](https://github.com/mgaitan/tisu/actions/workflows/ci.yml/badge.svg)
 
 
-Tisú [*tiˈsu*, **tissue** in spanish] allows to manage your (github) project's issue tracker, using a single text file
-
-Note: this is a work in progress. Pull requests and feedback are welcome.
+Tisú [*tiˈsu*, **tissue** in spanish] allows to manage your project's issue tracker, using a single text file. It support Github or Jira.
 
 ## Install
 
 ```
-$ pip3 install --user -U tisu
+$ uv tool install tisu
 ```
 
 ## Usage

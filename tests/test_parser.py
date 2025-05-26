@@ -1,10 +1,10 @@
-import os.path
+from pathlib import Path
 
 from tisu.parser import clean_metadata, get_metadata, parser
 
 
 def s(file):
-    return os.path.join(os.path.dirname(os.path.realpath(__file__)), "sources", file)
+    return (Path(__file__).parent / "sources" / file).read_text()
 
 
 def test_multiples_issues():
@@ -13,7 +13,8 @@ def test_multiples_issues():
     assert issues[0].title == "Fix the parser"
     assert (
         issues[0].body
-        == "\nThis would be the content of and issue\n\n## subseccion 1.1\n\nthis is a subsection, part of the issue body\n"
+        == ("\nThis would be the content of and issue\n"
+            "\n## subseccion 1.1\n\nthis is a subsection, part of the issue body\n")
     )
     assert issues[1].title == "Improve tests"
     assert issues[1].body == "\nAnother issue"
@@ -29,12 +30,12 @@ def test_with_number():
 
 
 def test_get_metadata():
-    meta = get_metadata(open(s("with_metadata.md")).read())
+    meta = get_metadata(s("with_metadata.md"))
     assert meta == {"assignee": "mgaitan", "labels": ["x", "y", "z"], "milestone": "sprint1", "state": "open"}
 
 
 def test_get_metadata_is_stable():
-    meta = get_metadata(open(s("with_metadata.md")).read())
+    meta = get_metadata(s("with_metadata.md"))
     assert meta == get_metadata(str(meta))
 
 
@@ -44,7 +45,7 @@ def test_no_metadata_return_no_output():
 
 
 def test_clean_metadata():
-    text = clean_metadata(open(s("with_metadata.md")).read())
+    text = clean_metadata(s("with_metadata.md"))
     assert text == "# test1\n\n\nbody\n"
 
 

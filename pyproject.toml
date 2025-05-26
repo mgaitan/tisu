@@ -33,18 +33,32 @@ dev = ["pytest", "black", "flit"]
 [tool.ipdb]
 context = 5
 
-
-[tool.black]
+[tool.ruff]
+target-version = "py38"
 line-length = 120
-target-version = ["py38"]
-color = true
+indent-width = 4
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",   # pycodestyle (E, W) https://docs.astral.sh/ruff/rules/#pycodestyle-e-w
+    "F",   # https://docs.astral.sh/ruff/rules/#pyflakes-f
+    "I",   # isort
+    "C90", # https://docs.astral.sh/ruff/rules/#mccabe-c90
+    "UP",  # https://docs.astral.sh/ruff/rules/#pyupgrade-up
+    "RUF", # https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf
+    "T10", # remove pdbs
+    "ISC", # https://docs.astral.sh/ruff/rules/#flake8-implicit-str-concat-isc
+    "SIM", # https://docs.astral.sh/ruff/rules/#flake8-simplify-sim
+    "B",   # https://docs.astral.sh/ruff/rules/#flake8-bugbear-b
+    "C4",  # https://docs.astral.sh/ruff/rules/#flake8-comprehensions-c4
+    "PIE", # https://docs.astral.sh/ruff/rules/#flake8-pie-pie
+]
 
 [dependency-groups]
 dev = [
     "ipdb>=0.13.13",
-    "ipython>=8.12.3",
+ "ipython>=8.12.3",
+ "pytest>=8.3.5",
 ]
-jira = [
-    "jira>=3.8.0",
-    "pyyaml>=6.0.2",
-]
+jira = ["jira>=3.8.0", "pyyaml>=6.0.2"]

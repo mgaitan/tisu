@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class TrackerManager(ABC):
     def __init__(self, project_or_repo, auth, password):
         self.auth = auth

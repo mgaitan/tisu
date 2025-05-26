@@ -4,8 +4,6 @@ from ..models import Issue, Metadata
 from . import TrackerManager
 
 
-
-
 class GithubManager(TrackerManager):
     def __init__(self, repo, login_or_token=None, password=None):
         self.g = Github(login_or_token, password)
@@ -21,7 +19,7 @@ class GithubManager(TrackerManager):
             if issue.milestone:
                 meta["milestone"] = issue.milestone.title
             if issue.labels:
-                meta["labels"] = [l.name for l in issue.labels]
+                meta["labels"] = [label.name for label in issue.labels]
             if issue.assignee:
                 meta["assignee"] = issue.assignee.login
             issues.append(Issue(title=issue.title, body=issue.body, number=issue.number, metadata=meta))
@@ -53,14 +51,14 @@ class GithubManager(TrackerManager):
             self._assignees = {c.login: c for c in self.repo.get_assignees()}
         if login not in self._assignees:
             # warning
-            print("{} doesn't belong to this repo. This issue won't be assigned.".format(login))
+            print(f"{login} doesn't belong to this repo. This issue won't be assigned.")
         return self._assignees.get(login)
 
     def get_state(self, state):
         if not state:
             return "open"
         if state not in ("open", "closed"):
-            print("{} isn't a valid state (i.e: open or closed)".format(state))
+            print(f"{state} isn't a valid state (i.e: open or closed)")
             return "open"
         return state
 
@@ -90,9 +88,9 @@ class GithubManager(TrackerManager):
                         assignee=self.get_assignee(issue.assignee),
                         state=self.get_state(issue.state),
                     )
-                    print("{} #{}: {}".format(action, gh_issue.number, gh_issue.title))
+                    print(f"{action} #{gh_issue.number}: {gh_issue.title}")
                 except GithubException:
-                    print("Not found #{}: {} (ignored)".format(issue.number, issue.title))
+                    print(f"Not found #{issue.number}: {issue.title} (ignored)")
                     continue
             else:
                 gh_issue = self.repo.create_issue(
@@ -102,4 +100,4 @@ class GithubManager(TrackerManager):
                     milestone=self.get_milestone(issue.milestone),
                     assignee=self.get_assignee(issue.assignee),
                 )
-                print("Created #{}: {}".format(gh_issue.number, gh_issue.title))
+                print(f"Created #{gh_issue.number}: {gh_issue.title}")

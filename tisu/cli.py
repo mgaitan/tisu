@@ -2,8 +2,8 @@
 Tisú: your issue tracker, in a text file
 
 Usage:
-  tisu push <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] [--token=<token>] [--username=<username>] [--pass=<password>] [--server=<server>]
-  tisu pull <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] [--token=<token>] [--username=<username>] [--pass=<password>] [--server=<server>]
+  tisu push <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] ...
+  tisu pull <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] ...
   tisu (-h | --help)
   tisu --version
 
@@ -11,7 +11,7 @@ Options:
   --tracker=<tracker>      issue backend: [default: github] or "jira"
   --repo=<repo>            Github repo (as: user/name). [default: inferred from git remote]
 
-  --project=<project>      JIRA project key (e.g. PROJ) – only if --tracker=jira
+  --project=<project>      JIRA project key (e.g. PROJ) - only if --tracker=jira
   --server=<server>        URL of the server
   --version                Show version.
   --state=<state>          Filter by issue state [default: open].
@@ -22,17 +22,18 @@ Options:
   -h --help                Show this screen.
 
 """
+
 import os
 import re
-from pathlib import Path
 from getpass import getpass
+from pathlib import Path
 from subprocess import check_output
 
 from docopt import docopt
+
 from .managers.github import GithubManager
 from .parser import parser
-
-__version__ = "3.0"
+from .version import __version__
 
 
 def github_from_git():
@@ -46,9 +47,7 @@ def main():
     tracker = args["--tracker"] or "github"
     path = args["<markdown_file>"]
 
-
     repo = args["--repo"] if args["--repo"] != "inferred from git remote" else github_from_git()
-
 
     if tracker == "github":
         token = args.get("--token") or os.environ.get("GITHUB_TOKEN")
@@ -56,20 +55,20 @@ def main():
         password = args.get("--pass", getpass("Github password: ") if not token else None)
         manager = GithubManager(repo, token or username, password)
     else:
-        from .managers.jira import JiraManager
         import yaml
+
+        from .managers.jira import JiraManager
+
         try:
             config_file = Path("~/.config/.jira/.config.yml").expanduser()
             default_from_jira_cli = yaml.safe_load(config_file.read_text())
         except FileNotFoundError:
             default_from_jira_cli = {}
-        import ipdb;ipdb.set_trace()
         token = args.get("--token") or os.environ.get("JIRA_API_TOKEN")
         username = args.get("--username") or os.environ.get("JIRA_API_USERNAME") or default_from_jira_cli.get("login")
         server = args["--server"] or os.environ.get("JIRA_API_SERVER") or default_from_jira_cli["server"]
         project = args["--project"] or os.environ.get("JIRA_API_PROJECT") or default_from_jira_cli["project"]["key"]
         manager = JiraManager(project, server, username, token)
-
 
     if args["pull"]:
         issues = manager.fetcher(args["--state"])

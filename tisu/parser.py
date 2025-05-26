@@ -1,17 +1,20 @@
 import re
+from pathlib import Path
 
 from docutils.core import publish_doctree
 from recommonmark.parser import CommonMarkParser
 
 from .models import Issue, Metadata
 
-META_REGEX = re.compile(r"^:(state|assignee|labels|milestone|parent|project|issuetype):\s*?(.*)\r?\n?", flags=re.MULTILINE)
+META_REGEX = re.compile(
+    r"^:(state|assignee|labels|milestone|parent|project|issuetype):\s*?(.*)\r?\n?", flags=re.MULTILINE
+)
 
 
 def get_metadata(text):
     meta = Metadata((k, v.strip()) for k, v in re.findall(META_REGEX, text))
     if "labels" in meta:
-        meta["labels"] = [l.strip() for l in meta["labels"].split(",")]
+        meta["labels"] = [label.strip() for label in meta["labels"].split(",")]
     return meta
 
 
@@ -19,16 +22,14 @@ def clean_metadata(text):
     return re.sub(META_REGEX, "", text)
 
 
-def parser(path):
-
-    with open(path) as fh:
-        source = fh.read()
+def parser(path: Path | str) -> list[Issue]:
+    source = path if isinstance(path, str) else path.read_text()
     lines = source.split("\n")
     dt = publish_doctree(source, parser=CommonMarkParser())
 
     tokens = {}
 
-    for i, (sec_id, section) in enumerate(dt.ids.items()):
+    for _i, (_sec_id, section) in enumerate(dt.ids.items()):
         if section.parent.tagname != "document":
             continue
         text = section.astext()
@@ -41,7 +42,7 @@ def parser(path):
         metadata = get_metadata(text)
 
         tokens[section.line] = (title.strip(), int(number) if number else None, metadata)
-    k = list(sorted(tokens.keys()))
+    k = sorted(tokens.keys())
     k.append(len(lines) + 2)
     return [
         Issue(
