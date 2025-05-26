@@ -2,8 +2,10 @@
 Tisú: your issue tracker, in a text file
 
 Usage:
-  tisu push <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] [--server=<server>] [--username=<username>] [--pass=<pass>] [--token=<token>]
-  tisu pull <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] [--server=<server>] [--username=<username>] [--pass=<pass>] [--token=<token>]
+  tisu push <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] \
+[--server=<server>] [--username=<username>] [--pass=<pass>] [--token=<token>]
+  tisu pull <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] \
+[--server=<server>] [--username=<username>] [--pass=<pass>] [--token=<token>]
   tisu (-h | --help)
   tisu --version
 
