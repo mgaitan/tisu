@@ -1,5 +1,5 @@
 """
-Tisú: your issue tracker, in a text file
+Tisú: your issue tracker, in a text file - Demo using UVX
 
 Usage:
   tisu push <markdown_file> [--tracker=<tracker>] [--repo=<repo> | --project=<project>] [--state=<state>] \
